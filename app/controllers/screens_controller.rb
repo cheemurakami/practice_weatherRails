@@ -13,6 +13,7 @@ class ScreensController < ApplicationController
     @weather_now = all_results[0]["weather"][0]["main"]
     @weather_description = all_results[0]["weather"][0]["description"]
     @five_days_result = get_five_days_result(all_results)
+    @days = get_days(@five_days_result)
   end
 
   def get_five_days_result(response_list)
@@ -21,6 +22,20 @@ class ScreensController < ApplicationController
       five_days_result.push(response_list[i * 8])
     end
     five_days_result
+  end
+  
+  def get_days(five_days_result)
+    dates_with_time = []
+    days = []
+    five_days_result.each_with_index do |result|
+      dates_with_time.push(result["dt_txt"])
+    end
+    dates_with_time
+    
+    dates_with_time.each do |dates|
+      days.push(dates.split(" ")[0])
+    end
+    days
   end
 end
 

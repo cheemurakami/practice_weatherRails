@@ -7,11 +7,9 @@
 <table>
   <thead>
       <tr>
-        <th>day1</th>
-        <th>day2</th>
-        <th>day3</th>
-        <th>day4</th>
-        <th>day5</th>
+        <% @days.each do |day|%>
+          <th><%= day %></th>
+        <% end%>
         <th colspan="3"></th>
       </tr>
   </thead>
