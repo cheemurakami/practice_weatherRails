@@ -7,8 +7,8 @@
 <table>
   <thead>
       <tr>
-        <% @days.each do |day|%>
-          <th><%= day %></th>
+        <% @dates.each do |date|%>
+          <th><%= date %></th>
         <% end%>
         <th colspan="3"></th>
       </tr>
@@ -17,6 +17,10 @@
       <tr>
         <% @five_days_result.each do |result|%>
          <td><%= result["weather"][0]["main"] %></td>
+        <% end %>
+      <tr>
+        <% @temps.each do |temp|%>
+         <td><%= temp %></td>
         <% end %>
       </tr>
   </tbody>
