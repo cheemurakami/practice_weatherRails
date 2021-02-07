@@ -1,6 +1,6 @@
 <h2>Weather</h2>
-<form action="/show" method="get" accept-charset="UTF-8" >
-  <label for="city">Search city:</label>
-  <input id="city" name="city" type="text" />
-  <input name="commit" type="submit" value="Search" data-disable-with="Search" />
-</form>
+  <%= form_with url: "/show", method: :get, local: true do |f| %>
+    <%= f.label :city, "Search for:" %>
+    <%= f.text_field :city %>
+    <%= f.submit "Search" %>
+  <% end %>
