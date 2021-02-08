@@ -14,6 +14,7 @@ class ScreensController < ApplicationController
     @weather_description = all_results[0]["weather"][0]["description"]
     @five_days_result = get_five_days_result(all_results)
     @dates = get_dates(@five_days_result)
+    @type = params[:type]
     @temps = get_temps(@five_days_result)
   end
 
@@ -26,25 +27,19 @@ class ScreensController < ApplicationController
   end
   
   def get_dates(five_days_result)
-    dates_with_time = []
-    days = []
-    five_days_result.each_with_index do |result|
-      dates_with_time.push(result["dt_txt"])
+    five_days_result.map do |result|
+      result["dt_txt"].split(" ")[0]
     end
-    dates_with_time
-    
-    dates_with_time.each do |dates|
-      days.push(dates.split(" ")[0])
-    end
-    days
   end
 
   def get_temps(five_days_result)
-    temps = []
-    five_days_result.each do |result|
-      temps.push(result["main"]["temp"])
+    five_days_result.map do |result|
+      if @type == "celsius"
+        convert_to_c(result["main"]["temp"])
+      else
+        convert_to_f(result["main"]["temp"])
+      end
     end
-    temps
   end
 
   def convert_to_f(temp)
