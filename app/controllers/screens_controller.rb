@@ -46,5 +46,13 @@ class ScreensController < ApplicationController
     end
     temps
   end
+
+  def convert_to_f(temp)
+    (((temp - 273.15) * 9 / 5) + 32).to_i
+  end
+
+  def convert_to_c(temp)
+    (temp - 273.15).to_i
+  end
 end
 
